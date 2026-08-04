@@ -2555,31 +2555,25 @@ button {
 
 /*
  * Mobile + tablet (≤1024px) ONLY:
- * - Everything stays visible (waves, logos, design, content)
- * - ALL continuous motion removed (including hero): logos, waves, mesh, pulse, etc.
- * - Content: fade-in only (opacity 0.08 → 1, 0.4s), no L/R or slide transforms
+ * - Everything fully visible immediately (waves, logos, design, content)
+ * - No fade-in, no L/R slides, no continuous motion (including hero)
  * Desktop (≥1025px): original full motion unchanged
  */
 @media (max-width: 1024px) {
-  /* ---- Content fade-in only (entire page, including hero) ---- */
+  /* ---- No content animation: fully visible at once ---- */
   .reveal,
   .reveal--left,
   .reveal--right,
   .reveal:not(.reveal--left):not(.reveal--right),
   .reveal[data-stagger],
-  .reveal--delay {
-    opacity: 0.08;
-    transform: none !important;
-    transition: opacity 0.4s ease !important;
-    transition-delay: 0ms !important;
-  }
-
+  .reveal--delay,
   .reveal.is-visible {
     opacity: 1 !important;
     transform: none !important;
+    transition: none !important;
+    transition-delay: 0ms !important;
   }
 
-  /* Kill stagger delays so every element fades cleanly at 0.4s */
   .reveal[data-stagger="0"],
   .reveal[data-stagger="1"],
   .reveal[data-stagger="2"],

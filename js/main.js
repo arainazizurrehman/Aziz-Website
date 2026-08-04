@@ -428,16 +428,14 @@
       });
     });
 
-  if (reducedMotion) {
+  if (reducedMotion || isNarrowViewport()) {
+    // Mobile/tablet + reduced-motion: fully visible immediately (no fade / slide)
     revealEls.forEach(function (el) {
       el.classList.add("is-visible");
     });
   } else if ("IntersectionObserver" in window && revealEls.length) {
-    const mobileReveal = isNarrowViewport();
-    // Mobile: content fade-in; desktop: L/R slide + fade
-    const revealOpts = mobileReveal
-      ? { threshold: 0.08, rootMargin: "0px 0px -8% 0px" }
-      : { threshold: 0.12, rootMargin: "0px 0px -40px 0px" };
+    // Desktop only: L/R slide + fade
+    const revealOpts = { threshold: 0.12, rootMargin: "0px 0px -40px 0px" };
 
     const revealObs = new IntersectionObserver(
       function (entries) {
