@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aziz Ur Rehman — TikTok Shop growth, AI video production, and channel automation for brands and creators who want content that converts." />
+  <meta name="theme-color" content="#0a0612" />
+  <title>Aziz Ur Rehman | TikTok Shop Growth & AI Video Production</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Grain overlay -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- ========== NAVBAR ========== -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo" aria-label="Home">
+        <span class="nav__logo-mark">A</span>
+        <span class="nav__logo-text">Aziz<span class="nav__logo-accent">.</span></span>
+      </a>
+
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav__actions">
+        <a
+          href="https://wa.me/923484421503"
+          class="btn btn--pill btn--gradient"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="WhatsApp"
+        >
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.85 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          <span>WhatsApp</span>
+        </a>
+        <a
+          href="mailto:rehmanazizarain@gmail.com"
+          class="btn btn--pill btn--gradient"
+          aria-label="Email"
+        >
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <span>Email</span>
+        </a>
+      </div>
+
+      <button class="nav__toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div class="nav__mobile" id="navMobile" hidden>
+      <a href="#services">Services</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <div class="nav__mobile-actions">
+        <a href="https://wa.me/923484421503" class="btn btn--pill btn--gradient" target="_blank" rel="noopener noreferrer">
+          <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.85 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          WhatsApp
+        </a>
+        <a href="mailto:rehmanazizarain@gmail.com" class="btn btn--pill btn--gradient">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Email
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========== HERO ========== -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__aurora">
+          <span class="hero__aurora-band hero__aurora-band--1"></span>
+          <span class="hero__aurora-band hero__aurora-band--2"></span>
+          <span class="hero__aurora-band hero__aurora-band--3"></span>
+        </div>
+      </div>
+      <div class="hero__grain" aria-hidden="true"></div>
+
+      <!-- Floating platform logos (decorative) -->
+      <div class="float-logos" aria-hidden="true">
+        <svg class="float-logo float-logo--tiktok float-logo--a" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.3a6.34 6.34 0 0010.86 4.48V12.4a8.27 8.27 0 004.84 1.54V10.5a4.84 4.84 0 01-1.26-.16z"/></svg>
+        <svg class="float-logo float-logo--youtube float-logo--b" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 00-2.12-2.12C19.5 4 12 4 12 4s-7.5 0-9.38.38A3 3 0 00.5 6.5 31.5 31.5 0 000 12a31.5 31.5 0 00.5 5.5 3 3 0 002.12 2.12C4.5 20 12 20 12 20s7.5 0 9.38-.38a3 3 0 002.12-2.12A31.5 31.5 0 0024 12a31.5 31.5 0 00-.5-5.5zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+        <svg class="float-logo float-logo--shop float-logo--c" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M6 7h12l-1 12H7L6 7z"/><path d="M9 7V5a3 3 0 016 0v2"/><path d="M9 11v2M15 11v2"/></svg>
+        <svg class="float-logo float-logo--tiktok float-logo--d" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.3a6.34 6.34 0 0010.86 4.48V12.4a8.27 8.27 0 004.84 1.54V10.5a4.84 4.84 0 01-1.26-.16z"/></svg>
+      </div>
+
+      <div class="hero__grid">
+        <div class="hero__content reveal">
+          <div class="hero__eyebrow">
+            <span class="hero__eyebrow-text">TikTok Shop Growth · AI Video Production · Channel Automation</span>
+          </div>
+
+          <h1 class="hero__name">Aziz Ur Rehman</h1>
+
+          <p class="hero__headline">
+            Growing TikTok Shops &amp; creating
+            <span class="gradient-text">AI content that converts.</span>
+          </p>
+
+          <p class="hero__support">
+            End-to-end TikTok Shop management, YouTube &amp; TikTok automation, and AI video production for brands, creators and small businesses who want output that actually sells.
+          </p>
+
+          <div class="hero__ctas">
+            <a
+              href="https://wa.me/923484421503"
+              class="btn btn--primary btn--pulse"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.85 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Message on WhatsApp
+            </a>
+            <a href="#services" class="btn btn--outline">Explore Services</a>
+          </div>
+        </div>
+
+        <div class="hero__visual reveal reveal--delay">
+          <div class="photo-card">
+            <div class="photo-card__border" aria-hidden="true"></div>
+            <div class="photo-card__inner">
+              <img
+                src="assets/aziz-photo.png"
+                alt="Aziz Ur Rehman — professional portrait"
+                width="480"
+                height="600"
+                fetchpriority="high"
+              />
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+                <polyline points="17 6 23 6 23 12"/>
+              </svg>
+            </div>
+            <div class="stat-card__body">
+              <strong class="stat-card__value">$<span class="countup" data-target="25000">0</span>+</strong>
+              <span class="stat-card__label">$25,000+ revenue driven on a brand-new shop — fully organic, no paid ads</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href="#services" class="scroll-cue" aria-label="Scroll to services">
+        <span class="scroll-cue__line"></span>
+        <svg class="scroll-cue__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <polyline points="6 9 12 15 18 9"/>
+        </svg>
+      </a>
+    </section>
+
+    <!-- ========== SERVICES OVERVIEW ========== -->
+    <section class="section services" id="services">
+      <div class="float-logos float-logos--section" aria-hidden="true">
+        <svg class="float-logo float-logo--tiktok float-logo--e" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.3a6.34 6.34 0 0010.86 4.48V12.4a8.27 8.27 0 004.84 1.54V10.5a4.84 4.84 0 01-1.26-.16z"/></svg>
+        <svg class="float-logo float-logo--youtube float-logo--f" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 00-2.12-2.12C19.5 4 12 4 12 4s-7.5 0-9.38.38A3 3 0 00.5 6.5 31.5 31.5 0 000 12a31.5 31.5 0 00.5 5.5 3 3 0 002.12 2.12C4.5 20 12 20 12 20s7.5 0 9.38-.38a3 3 0 002.12-2.12A31.5 31.5 0 0024 12a31.5 31.5 0 00-.5-5.5zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+      </div>
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="section__eyebrow">What I Offer</p>
+          <h2 class="section__title">Services built to <span class="gradient-text">grow &amp; convert</span></h2>
+          <p class="section__lead">
+            Four focused offers — from full TikTok Shop operations to AI-powered video systems that feed monetized channels.
+          </p>
+        </header>
+
+        <div class="services-grid">
+          <a href="#tiktok-shop" class="service-card glass reveal">
+            <div class="service-card__icon-wrap">
+              <svg class="service-card__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.3a6.34 6.34 0 0010.86 4.48V12.4a8.27 8.27 0 004.84 1.54V10.5a4.84 4.84 0 01-1.26-.16z"/>
+              </svg>
+            </div>
+            <h3 class="service-card__title">TikTok Shop Management</h3>
+            <p class="service-card__desc">Full End-to-End account management — product hunting, listings, fulfillment, affiliates &amp; growth.</p>
+            <span class="service-card__link">View details <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a href="#youtube-automation" class="service-card glass reveal">
+            <div class="service-card__icon-wrap">
+              <svg class="service-card__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M23.5 6.5a3 3 0 00-2.12-2.12C19.5 4 12 4 12 4s-7.5 0-9.38.38A3 3 0 00.5 6.5 31.5 31.5 0 000 12a31.5 31.5 0 00.5 5.5 3 3 0 002.12 2.12C4.5 20 12 20 12 20s7.5 0 9.38-.38a3 3 0 002.12-2.12A31.5 31.5 0 0024 12a31.5 31.5 0 00-.5-5.5zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/>
+              </svg>
+            </div>
+            <h3 class="service-card__title">YouTube Automation</h3>
+            <p class="service-card__desc">End-to-end channel growth — strategy, production, SEO, scheduling &amp; monetization setup.</p>
+            <span class="service-card__link">View details <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a href="#tiktok-automation" class="service-card glass reveal">
+            <div class="service-card__icon-wrap">
+              <svg class="service-card__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.3a6.34 6.34 0 0010.86 4.48V12.4a8.27 8.27 0 004.84 1.54V10.5a4.84 4.84 0 01-1.26-.16z"/>
+              </svg>
+            </div>
+            <h3 class="service-card__title">TikTok Automation</h3>
+            <p class="service-card__desc">End-to-end organic growth — content systems, posting cadence &amp; Creator Rewards enrollment.</p>
+            <span class="service-card__link">View details <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a href="#ai-video" class="service-card glass reveal">
+            <div class="service-card__icon-wrap">
+              <svg class="service-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="3"/>
+                <path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/>
+              </svg>
+            </div>
+            <h3 class="service-card__title">AI Video Production</h3>
+            <p class="service-card__desc">Standalone videos for individuals &amp; small businesses — UGC ads, product spots, cartoons &amp; more.</p>
+            <span class="service-card__link">View details <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PORTFOLIO / SAMPLE WORK ========== -->
+    <section class="section portfolio" id="portfolio">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="section__eyebrow">See the Work</p>
+          <h2 class="section__title">AI-generated ads — see the <span class="gradient-text">actual results</span></h2>
+          <p class="section__lead">
+            Real sample videos from recent AI production work — scroll and play to evaluate quality, style, and pacing firsthand.
+          </p>
+        </header>
+
+        <div class="portfolio-grid">
+          <a class="portfolio-card glass reveal" href="https://youtube.com/shorts/khF-mzFaTKM" target="_blank" rel="noopener noreferrer">
+            <div class="portfolio-card__frame">
+              <img src="https://img.youtube.com/vi/khF-mzFaTKM/hqdefault.jpg" alt="AI video sample 1" width="480" height="360" loading="lazy" />
+              <span class="portfolio-card__play" aria-hidden="true">
+                <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74a8 8 0 00-5.63-5.66C55.7 1 34 1 34 1S12.3 1 7.11 2.08A8 8 0 001.48 7.74C.4 12.93.4 24 .4 24s0 11.07 1.08 16.26a8 8 0 005.63 5.66C12.3 47 34 47 34 47s21.7 0 26.89-1.08a8 8 0 005.63-5.66C67.6 35.07 67.6 24 67.6 24s0-11.07-1.08-16.26z" fill="red"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
+              </span>
+            </div>
+          </a>
+          <a class="portfolio-card glass reveal" href="https://youtube.com/shorts/fGAWoo32YUI" target="_blank" rel="noopener noreferrer">
+            <div class="portfolio-card__frame">
+              <img src="https://img.youtube.com/vi/fGAWoo32YUI/hqdefault.jpg" alt="AI video sample 2" width="480" height="360" loading="lazy" />
+              <span class="portfolio-card__play" aria-hidden="true">
+                <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74a8 8 0 00-5.63-5.66C55.7 1 34 1 34 1S12.3 1 7.11 2.08A8 8 0 001.48 7.74C.4 12.93.4 24 .4 24s0 11.07 1.08 16.26a8 8 0 005.63 5.66C12.3 47 34 47 34 47s21.7 0 26.89-1.08a8 8 0 005.63-5.66C67.6 35.07 67.6 24 67.6 24s0-11.07-1.08-16.26z" fill="red"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
+              </span>
+            </div>
+          </a>
+          <a class="portfolio-card glass reveal" href="https://youtube.com/shorts/vZAfrVi8fz4" target="_blank" rel="noopener noreferrer">
+            <div class="portfolio-card__frame">
+              <img src="https://img.youtube.com/vi/vZAfrVi8fz4/hqdefault.jpg" alt="AI video sample 3" width="480" height="360" loading="lazy" />
+              <span class="portfolio-card__play" aria-hidden="true">
+                <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74a8 8 0 00-5.63-5.66C55.7 1 34 1 34 1S12.3 1 7.11 2.08A8 8 0 001.48 7.74C.4 12.93.4 24 .4 24s0 11.07 1.08 16.26a8 8 0 005.63 5.66C12.3 47 34 47 34 47s21.7 0 26.89-1.08a8 8 0 005.63-5.66C67.6 35.07 67.6 24 67.6 24s0-11.07-1.08-16.26z" fill="red"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
+              </span>
+            </div>
+          </a>
+          <a class="portfolio-card glass reveal" href="https://youtube.com/shorts/ScOYIibH4bA" target="_blank" rel="noopener noreferrer">
+            <div class="portfolio-card__frame">
+              <img src="https://img.youtube.com/vi/ScOYIibH4bA/hqdefault.jpg" alt="AI video sample 4" width="480" height="360" loading="lazy" />
+              <span class="portfolio-card__play" aria-hidden="true">
+                <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74a8 8 0 00-5.63-5.66C55.7 1 34 1 34 1S12.3 1 7.11 2.08A8 8 0 001.48 7.74C.4 12.93.4 24 .4 24s0 11.07 1.08 16.26a8 8 0 005.63 5.66C12.3 47 34 47 34 47s21.7 0 26.89-1.08a8 8 0 005.63-5.66C67.6 35.07 67.6 24 67.6 24s0-11.07-1.08-16.26z" fill="red"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
+              </span>
+            </div>
+          </a>
+          <a class="portfolio-card glass reveal" href="https://youtube.com/shorts/6kbj5MnxIQY" target="_blank" rel="noopener noreferrer">
+            <div class="portfolio-card__frame">
+              <img src="https://img.youtube.com/vi/6kbj5MnxIQY/hqdefault.jpg" alt="AI video sample 5" width="480" height="360" loading="lazy" />
+              <span class="portfolio-card__play" aria-hidden="true">
+                <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74a8 8 0 00-5.63-5.66C55.7 1 34 1 34 1S12.3 1 7.11 2.08A8 8 0 001.48 7.74C.4 12.93.4 24 .4 24s0 11.07 1.08 16.26a8 8 0 005.63 5.66C12.3 47 34 47 34 47s21.7 0 26.89-1.08a8 8 0 005.63-5.66C67.6 35.07 67.6 24 67.6 24s0-11.07-1.08-16.26z" fill="red"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
+              </span>
+            </div>
+          </a>
+          <a class="portfolio-card glass reveal" href="https://youtube.com/shorts/j5_NRa43zXM" target="_blank" rel="noopener noreferrer">
+            <div class="portfolio-card__frame">
+              <img src="https://img.youtube.com/vi/j5_NRa43zXM/hqdefault.jpg" alt="AI video sample 6" width="480" height="360" loading="lazy" />
+              <span class="portfolio-card__play" aria-hidden="true">
+                <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.52 7.74a8 8 0 00-5.63-5.66C55.7 1 34 1 34 1S12.3 1 7.11 2.08A8 8 0 001.48 7.74C.4 12.93.4 24 .4 24s0 11.07 1.08 16.26a8 8 0 005.63 5.66C12.3 47 34 47 34 47s21.7 0 26.89-1.08a8 8 0 005.63-5.66C67.6 35.07 67.6 24 67.6 24s0-11.07-1.08-16.26z" fill="red"/><path d="M45 24L27 14v20" fill="#fff"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TIKTOK SHOP (detailed) ========== -->
+    <section class="section detail detail--featured" id="tiktok-shop">
+      <div class="float-logos float-logos--section" aria-hidden="true">
+        <svg class="float-logo float-logo--shop float-logo--g" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25"><path d="M6 7h12l-1 12H7L6 7z"/><path d="M9 7V5a3 3 0 016 0v2"/><path d="M9 11v2M15 11v2"/></svg>
+        <svg class="float-logo float-logo--tiktok float-logo--h" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.3a6.34 6.34 0 0010.86 4.48V12.4a8.27 8.27 0 004.84 1.54V10.5a4.84 4.84 0 01-1.26-.16z"/></svg>
+      </div>
+      <div class="container">
+        <div class="detail__layout">
+          <div class="detail__main reveal">
+            <div class="detail__badge">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.3a6.34 6.34 0 0010.86 4.48V12.4a8.27 8.27 0 004.84 1.54V10.5a4.84 4.84 0 01-1.26-.16z"/>
+              </svg>
+              TikTok Shop
+            </div>
+            <h2 class="detail__title">TikTok Shop Automation — full End-to-End account management</h2>
+            <p class="detail__intro">
+              From store setup to sustained organic sales, I run complete TikTok Shop operations so you can focus on the business — or plug me in for standalone consulting where you need it most.
+            </p>
+
+            <ul class="cap-grid">
+              <li class="cap-pill glass">Account Setup &amp; Creation</li>
+              <li class="cap-pill glass">Product Hunting &amp; Sourcing</li>
+              <li class="cap-pill glass">Product Listing &amp; Optimization</li>
+              <li class="cap-pill glass">Order Fulfillment &amp; After-Sales Support</li>
+              <li class="cap-pill glass">Returns &amp; Refund Management</li>
+              <li class="cap-pill glass">Affiliate Creator Collaboration</li>
+              <li class="cap-pill glass">Organic Sales Growth</li>
+              <li class="cap-pill glass">Account Health Monitoring</li>
+              <li class="cap-pill glass">Policy Violation Resolution &amp; TikTok Shop Appeals</li>
+            </ul>
+
+            <p class="detail__note">
+              Flexible engagement: full end-to-end management or targeted consulting — tailored to how much of the stack you want handled.
+            </p>
+
+            <a href="https://wa.me/923484421503" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+              Get a Custom Quote
+            </a>
+          </div>
+
+          <aside class="detail__aside reveal reveal--delay">
+            <div class="countup-card glass">
+              <p class="countup-card__label">Proven result</p>
+              <p class="countup-card__value">
+                $<span class="countup" data-target="25000">0</span>
+              </p>
+              <p class="countup-card__sub">$25,000+ revenue driven on a brand-new shop — fully organic, no paid ads</p>
+              <div class="countup-card__glow" aria-hidden="true"></div>
+            </div>
+            <div class="detail__highlights glass">
+              <h3>Why it works</h3>
+              <ul>
+                <li>2+ years progressive TikTok Shop experience</li>
+                <li>Hands-on across multiple product categories</li>
+                <li>Policy appeals &amp; account recovery expertise</li>
+                <li>Affiliate-driven reach expansion</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== YOUTUBE AUTOMATION ========== -->
+    <section class="section detail" id="youtube-automation">
+      <div class="float-logos float-logos--section" aria-hidden="true">
+        <svg class="float-logo float-logo--youtube float-logo--i" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 00-2.12-2.12C19.5 4 12 4 12 4s-7.5 0-9.38.38A3 3 0 00.5 6.5 31.5 31.5 0 000 12a31.5 31.5 0 00.5 5.5 3 3 0 002.12 2.12C4.5 20 12 20 12 20s7.5 0 9.38-.38a3 3 0 002.12-2.12A31.5 31.5 0 0024 12a31.5 31.5 0 00-.5-5.5zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+      </div>
+      <div class="container">
+        <div class="detail__layout detail__layout--reverse">
+          <div class="detail__main reveal">
+            <div class="detail__badge detail__badge--pink">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M23.5 6.5a3 3 0 00-2.12-2.12C19.5 4 12 4 12 4s-7.5 0-9.38.38A3 3 0 00.5 6.5 31.5 31.5 0 000 12a31.5 31.5 0 00.5 5.5 3 3 0 002.12 2.12C4.5 20 12 20 12 20s7.5 0 9.38-.38a3 3 0 002.12-2.12A31.5 31.5 0 0024 12a31.5 31.5 0 00-.5-5.5zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/>
+              </svg>
+              YouTube
+            </div>
+            <h2 class="detail__title">YouTube Automation</h2>
+            <p class="detail__subtitle">End-to-end channel growth</p>
+            <p class="detail__intro">
+              Complete YouTube channel systems for creators and brands aiming at consistent output, audience growth, and monetization — from setup through ongoing performance optimization.
+            </p>
+
+            <ul class="cap-grid">
+              <li class="cap-pill glass">Channel Setup &amp; Branding</li>
+              <li class="cap-pill glass">Niche &amp; Content Strategy</li>
+              <li class="cap-pill glass">Script Writing</li>
+              <li class="cap-pill glass">AI Voiceover &amp; Video Production</li>
+              <li class="cap-pill glass">Thumbnail &amp; Title Optimization (SEO)</li>
+              <li class="cap-pill glass">Upload Scheduling &amp; Posting</li>
+              <li class="cap-pill glass">Audience Growth Strategy</li>
+              <li class="cap-pill glass">Monetization Setup (YouTube Partner Program)</li>
+              <li class="cap-pill glass">Performance Tracking &amp; Optimization</li>
+            </ul>
+
+            <p class="detail__note">
+              Available as end-to-end channel management, or standalone video production — flexible based on your needs.
+            </p>
+
+            <a href="https://wa.me/923484421503" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+              Get a Custom Quote
+            </a>
+          </div>
+
+          <aside class="detail__aside reveal reveal--delay">
+            <div class="platform-card glass">
+              <h3>Ideal for</h3>
+              <ul>
+                <li>Faceless &amp; niche educational channels</li>
+                <li>Brands building long-form presence</li>
+                <li>Creators scaling without on-camera work</li>
+                <li>Teams needing reliable weekly output</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== TIKTOK AUTOMATION ========== -->
+    <section class="section detail detail--alt" id="tiktok-automation">
+      <div class="float-logos float-logos--section" aria-hidden="true">
+        <svg class="float-logo float-logo--tiktok float-logo--j" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.3a6.34 6.34 0 0010.86 4.48V12.4a8.27 8.27 0 004.84 1.54V10.5a4.84 4.84 0 01-1.26-.16z"/></svg>
+      </div>
+      <div class="container">
+        <div class="detail__layout">
+          <div class="detail__main reveal">
+            <div class="detail__badge detail__badge--teal">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.3a6.34 6.34 0 0010.86 4.48V12.4a8.27 8.27 0 004.84 1.54V10.5a4.84 4.84 0 01-1.26-.16z"/>
+              </svg>
+              TikTok
+            </div>
+            <h2 class="detail__title">TikTok Automation</h2>
+            <p class="detail__subtitle">End-to-end organic growth</p>
+            <p class="detail__intro">
+              Organic TikTok channel systems built for consistent posting, trend-aligned content, and growth toward Creator Rewards — with full management or production-only options.
+            </p>
+
+            <ul class="cap-grid">
+              <li class="cap-pill glass">Account Setup &amp; Optimization</li>
+              <li class="cap-pill glass">Trend &amp; Niche Research</li>
+              <li class="cap-pill glass">Script Writing</li>
+              <li class="cap-pill glass">AI Voiceover &amp; Video Production</li>
+              <li class="cap-pill glass">Video Editing &amp; Posting Schedule</li>
+              <li class="cap-pill glass">Hashtag &amp; SEO Optimization</li>
+              <li class="cap-pill glass">Audience Growth Strategy</li>
+              <li class="cap-pill glass">TikTok Creator Rewards Program Enrollment</li>
+              <li class="cap-pill glass">Performance Tracking &amp; Optimization</li>
+            </ul>
+
+            <p class="detail__note">
+              Available as end-to-end channel management, or standalone video production — flexible based on your needs.
+            </p>
+
+            <a href="https://wa.me/923484421503" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+              Let's Discuss Your Project
+            </a>
+          </div>
+
+          <aside class="detail__aside reveal reveal--delay">
+            <div class="platform-card glass">
+              <h3>Ideal for</h3>
+              <ul>
+                <li>Faceless / animated niche accounts</li>
+                <li>Creators building toward Creator Rewards</li>
+                <li>Brands needing short-form cadence</li>
+                <li>Teams scaling organic reach</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== AI VIDEO PRODUCTION ========== -->
+    <section class="section detail" id="ai-video">
+      <div class="float-logos float-logos--section" aria-hidden="true">
+        <svg class="float-logo float-logo--youtube float-logo--l" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.5a3 3 0 00-2.12-2.12C19.5 4 12 4 12 4s-7.5 0-9.38.38A3 3 0 00.5 6.5 31.5 31.5 0 000 12a31.5 31.5 0 00.5 5.5 3 3 0 002.12 2.12C4.5 20 12 20 12 20s7.5 0 9.38-.38a3 3 0 002.12-2.12A31.5 31.5 0 0024 12a31.5 31.5 0 00-.5-5.5zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/></svg>
+        <svg class="float-logo float-logo--tiktok float-logo--m" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.3a6.34 6.34 0 0010.86 4.48V12.4a8.27 8.27 0 004.84 1.54V10.5a4.84 4.84 0 01-1.26-.16z"/></svg>
+      </div>
+      <div class="container">
+        <div class="detail__ai reveal">
+          <div class="detail__badge detail__badge--orange">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="16" rx="3"/>
+              <path d="M10 9l5 3-5 3V9z" fill="currentColor" stroke="none"/>
+            </svg>
+            AI Video
+          </div>
+          <h2 class="detail__title">AI Video Production</h2>
+          <p class="detail__subtitle">Standalone videos for individuals &amp; small businesses</p>
+          <p class="detail__intro detail__intro--wide">
+            Need individual videos without full channel management? Choose the format that fits your campaign — built for product marketing, social ads, and creative content. Live examples are available on my
+            <a href="https://www.youtube.com/@AIwithAziz08" target="_blank" rel="noopener noreferrer" class="inline-link">YouTube channel</a>.
+          </p>
+
+          <div class="subservice-grid">
+            <button type="button" class="subservice glass" data-expand aria-expanded="false">
+              <div class="subservice__head">
+                <span class="subservice__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="12" cy="8" r="3"/><path d="M6 20v-1a6 6 0 0112 0v1"/><path d="M16 4l2 2-2 2"/></svg>
+                </span>
+                <span class="subservice__title">UGC-Style Ads</span>
+                <span class="subservice__chevron" aria-hidden="true">+</span>
+              </div>
+              <div class="subservice__body">
+                <p>Realistic AI avatars delivering product testimonials and reviews — native-feeling UGC for TikTok, Reels, and Shorts.</p>
+              </div>
+            </button>
+
+            <button type="button" class="subservice glass" data-expand aria-expanded="false">
+              <div class="subservice__head">
+                <span class="subservice__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 12h8M12 8v8"/></svg>
+                </span>
+                <span class="subservice__title">Product Ads</span>
+                <span class="subservice__chevron" aria-hidden="true">+</span>
+              </div>
+              <div class="subservice__body">
+                <p>Action-focused product spots with no character narration — the product itself in motion or use, cinematic and conversion-oriented.</p>
+              </div>
+            </button>
+
+            <button type="button" class="subservice glass" data-expand aria-expanded="false">
+              <div class="subservice__head">
+                <span class="subservice__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="9" cy="10" r="2.5"/><circle cx="16" cy="9" r="2"/><path d="M4 18c1-3 3-4.5 5-4.5S12 15 14 18"/><path d="M14 18c.8-2 2-3 3.5-3 1.8 0 3 1.5 3.5 3"/></svg>
+                </span>
+                <span class="subservice__title">Cartoon Videos</span>
+                <span class="subservice__chevron" aria-hidden="true">+</span>
+              </div>
+              <div class="subservice__body">
+                <p>Animated video content with script, AI voiceover, and stylized visuals — ideal for entertainment and niche storytelling formats.</p>
+              </div>
+            </button>
+
+            <button type="button" class="subservice glass" data-expand aria-expanded="false">
+              <div class="subservice__head">
+                <span class="subservice__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h5"/><circle cx="17" cy="16" r="1.5"/></svg>
+                </span>
+                <span class="subservice__title">AI Storytelling / History / Mystery</span>
+                <span class="subservice__chevron" aria-hidden="true">+</span>
+              </div>
+              <div class="subservice__body">
+                <p>Narrative-driven content for history, mystery, and storytelling niches — cinematic visuals and retention-focused scripts.</p>
+              </div>
+            </button>
+          </div>
+
+          <div class="detail__ai-cta">
+            <a href="https://wa.me/923484421503" class="btn btn--primary" target="_blank" rel="noopener noreferrer">
+              Let's Discuss Your Project
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section class="section about" id="about">
+      <div class="container">
+        <div class="about__grid">
+          <header class="about__header reveal">
+            <p class="section__eyebrow">About</p>
+            <h2 class="section__title">Experience that compounds</h2>
+            <p class="about__lead">
+              Results-driven TikTok Shop specialist with <strong>2+ years</strong> of progressive experience — advancing from Executive to Account Manager — now expanding into AI-powered content systems for brands and creators.
+            </p>
+          </header>
+
+          <div class="timeline reveal">
+            <article class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__content glass">
+                <span class="timeline__role">TikTok Shop Account Manager</span>
+                <span class="timeline__meta">Marcell Technologies · Karachi</span>
+                <span class="timeline__dates">June 2025 – April 2026</span>
+                <p>Managed end-to-end TikTok Shop operations across multiple client accounts — product hunting through fulfillment and after-sales. Trained interns, maintained account health, and led policy violation appeals.</p>
+              </div>
+            </article>
+            <article class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__content glass">
+                <span class="timeline__role">TikTok Shop Specialist</span>
+                <span class="timeline__meta">Outsource in Pakistan (OIP) · Karachi</span>
+                <span class="timeline__dates">December 2024 – June 2025</span>
+                <p>Ran End-to-End shop operations under dropshipping models. Generated <strong>$25,000+</strong> in revenue on a brand-new shop in just 6 weeks. Strengthened expertise across categories, appeals, and daily store ops.</p>
+              </div>
+            </article>
+            <article class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__content glass">
+                <span class="timeline__role">TikTok Shop Executive</span>
+                <span class="timeline__meta">Marcell Technologies · Karachi</span>
+                <span class="timeline__dates">April 2024 – December 2024</span>
+                <p>Complete shop operations from account setup through order fulfillment. Collaborated with affiliate creators to expand product reach and drive sales.</p>
+              </div>
+            </article>
+            <article class="timeline__item">
+              <div class="timeline__dot"></div>
+              <div class="timeline__content glass">
+                <span class="timeline__role">AI Content Creation</span>
+                <span class="timeline__meta">Ongoing expansion</span>
+                <p>Producing short- and long-form AI video content for product marketing and channel growth — UGC-style ads, cartoon series, and storytelling niches on
+                  <a href="https://www.youtube.com/@AIwithAziz08" target="_blank" rel="noopener noreferrer" class="inline-link">YouTube</a>.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CERTIFICATIONS ========== -->
+    <section class="section certs" id="certifications">
+      <div class="container">
+        <header class="section__header reveal">
+          <p class="section__eyebrow">Credentials</p>
+          <h2 class="section__title">Certifications</h2>
+        </header>
+
+        <div class="certs__grid reveal">
+          <article class="cert-card glass">
+            <button type="button" class="cert-card__img" id="certOpen" aria-label="View Claude 101 certificate">
+              <img
+                src="assets/claude-101-certificate.jpg"
+                alt="Claude 101 Certificate of Completion — Anthropic, awarded to Aziz Rehman"
+                width="400"
+                height="300"
+                loading="lazy"
+              />
+            </button>
+            <div class="cert-card__body">
+              <h3>Claude 101</h3>
+              <p>Certificate of Completion · Anthropic</p>
+              <a
+                href="https://verify.skilljar.com/c/pz9aufrnjtw9"
+                class="inline-link cert-card__verify"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Verify certificate <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificate lightbox modal -->
+    <div class="cert-modal" id="certModal" hidden aria-hidden="true">
+      <div class="cert-modal__backdrop" data-cert-close></div>
+      <div class="cert-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="certModalTitle">
+        <button type="button" class="cert-modal__close" data-cert-close aria-label="Close certificate view">&times;</button>
+        <h3 id="certModalTitle" class="cert-modal__title">Claude 101 Certificate</h3>
+        <img
+          class="cert-modal__img"
+          src="assets/claude-101-certificate.jpg"
+          alt="Claude 101 Certificate of Completion — Anthropic, awarded to Aziz Rehman"
+        />
+        <a
+          href="https://verify.skilljar.com/c/pz9aufrnjtw9"
+          class="btn btn--primary cert-modal__verify"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Verify Certificate
+        </a>
+      </div>
+    </div>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="section contact" id="contact">
+      <div class="container">
+        <div class="contact__card glass reveal">
+          <div class="contact__glow" aria-hidden="true"></div>
+          <header class="contact__header">
+            <p class="section__eyebrow">Contact</p>
+            <h2 class="section__title">Let's build something that sells</h2>
+            <p class="contact__lead">
+              Ready to grow a TikTok Shop, launch AI video ads, or automate a monetized channel? Reach out — custom quotes, no pressure.
+            </p>
+          </header>
+
+          <div class="contact__actions">
+            <a
+              href="https://wa.me/923484421503"
+              class="btn btn--primary btn--lg btn--pulse"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.85 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Message on WhatsApp
+            </a>
+          </div>
+
+          <div class="contact__links">
+            <a href="mailto:rehmanazizarain@gmail.com" class="contact__link">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              rehmanazizarain@gmail.com
+            </a>
+            <a href="https://www.linkedin.com/in/aziz-ur-rehman-a47b762bb" class="contact__link" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              LinkedIn
+            </a>
+            <a href="https://www.youtube.com/@AIwithAziz08" class="contact__link" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M23.5 6.5a3 3 0 00-2.12-2.12C19.5 4 12 4 12 4s-7.5 0-9.38.38A3 3 0 00.5 6.5 31.5 31.5 0 000 12a31.5 31.5 0 00.5 5.5 3 3 0 002.12 2.12C4.5 20 12 20 12 20s7.5 0 9.38-.38a3 3 0 002.12-2.12A31.5 31.5 0 0024 12a31.5 31.5 0 00-.5-5.5zM9.75 15.5v-7l6.5 3.5-6.5 3.5z"/>
+              </svg>
+              YouTube · @AIwithAziz08
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="footer__copy">&copy; <span id="year"></span> Aziz Ur Rehman. All rights reserved.</p>
+      <p class="footer__tag">TikTok Shop Growth · AI Video · Channel Automation</p>
+    </div>
+  </footer>
+
+
+  <!-- ========== FLOATING WHATSAPP ========== -->
+  <a
+    href="https://wa.me/923484421503"
+    class="float-wa"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Message on WhatsApp"
+  >
+    <span class="float-wa__ring" aria-hidden="true"></span>
+    <span class="float-wa__ring float-wa__ring--delay" aria-hidden="true"></span>
+    <svg class="float-wa__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.85 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+  <script src="js/main.js"></script>
+</body>
+</html>
