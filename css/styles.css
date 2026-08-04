@@ -2548,13 +2548,16 @@ button {
 .reveal[data-stagger="6"] { transition-delay: 420ms; }
 .reveal[data-stagger="7"] { transition-delay: 490ms; }
 
-/* Mobile: fast, light reveals — avoid long blank/invisible lag while scrolling */
-@media (max-width: 768px) {
+/* Mobile + tablet only (≤1024px): clear fade-only — desktop L/R untouched */
+@media (max-width: 1024px) {
   .reveal,
+  .reveal--left,
+  .reveal--right,
+  .reveal:not(.reveal--left):not(.reveal--right),
   .reveal[data-stagger] {
-    transition:
-      opacity 0.18s ease-out,
-      transform 0.18s ease-out !important;
+    opacity: 0.08;
+    transform: none !important;
+    transition: opacity 0.6s ease-out !important;
     transition-delay: 0ms !important;
   }
 
@@ -2562,32 +2565,23 @@ button {
     transition-delay: 0ms !important;
   }
 
-  /* Tiny optional cascade (max ~60ms) so groups don't feel delayed */
-  .reveal[data-stagger="1"] { transition-delay: 20ms !important; }
-  .reveal[data-stagger="2"] { transition-delay: 30ms !important; }
-  .reveal[data-stagger="3"] { transition-delay: 40ms !important; }
-  .reveal[data-stagger="4"] { transition-delay: 50ms !important; }
-  .reveal[data-stagger="5"] { transition-delay: 55ms !important; }
-  .reveal[data-stagger="6"] { transition-delay: 60ms !important; }
-  .reveal[data-stagger="7"] { transition-delay: 60ms !important; }
-
-  .reveal--left {
-    transform: translate3d(-8px, 6px, 0);
-  }
-
-  .reveal--right {
-    transform: translate3d(8px, 6px, 0);
-  }
-
-  .reveal:not(.reveal--left):not(.reveal--right) {
-    transform: translate3d(0, 8px, 0);
+  .reveal[data-stagger="1"],
+  .reveal[data-stagger="2"],
+  .reveal[data-stagger="3"],
+  .reveal[data-stagger="4"],
+  .reveal[data-stagger="5"],
+  .reveal[data-stagger="6"],
+  .reveal[data-stagger="7"] {
+    transition-delay: 0ms !important;
   }
 
   .reveal.is-visible {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
+    opacity: 1 !important;
+    transform: none !important;
   }
+}
 
+@media (max-width: 768px) {
   .ambient-mesh__blob {
     filter: blur(70px);
     opacity: 0.4;

@@ -365,10 +365,10 @@
       el.classList.add("is-visible");
     });
   } else if ("IntersectionObserver" in window && revealEls.length) {
-    // Mobile: trigger earlier so content isn't blank while scrolling
-    const mobileReveal = window.matchMedia("(max-width: 768px)").matches;
+    // Mobile/tablet: trigger earlier so fade is clearly felt while scrolling
+    const mobileReveal = window.matchMedia("(max-width: 1024px)").matches;
     const revealOpts = mobileReveal
-      ? { threshold: 0.01, rootMargin: "100px 0px 80px 0px" }
+      ? { threshold: 0.05, rootMargin: "60px 0px 40px 0px" }
       : { threshold: 0.12, rootMargin: "0px 0px -40px 0px" };
 
     const revealObs = new IntersectionObserver(
