@@ -18,8 +18,6 @@
   /* ---------- Ambient morphing gradient mesh (CSS blobs) ---------- */
   (function injectAmbientMesh() {
     if (document.querySelector(".ambient-mesh")) return;
-    // Mobile: skip animated mesh — too expensive while scrolling
-    if (isMobileViewport()) return;
     const mesh = document.createElement("div");
     mesh.className = "ambient-mesh";
     mesh.setAttribute("aria-hidden", "true");
@@ -42,12 +40,8 @@
       el.remove();
     });
 
-    // Mobile: no continuous canvas — major scroll/jank fix
-    if (isMobileViewport() || reducedMotion) {
-      const existing = document.getElementById("flow-bg");
-      if (existing) existing.remove();
-      return;
-    }
+    // reduced-motion: static frame only (still shows hero atmosphere)
+    const mobileLite = isMobileViewport();
 
     let canvas = document.getElementById("flow-bg");
     if (!canvas) {
@@ -71,11 +65,12 @@
     let raf = 0;
     let particles = [];
     let scrollPending = false;
+    let running = false;
 
-    const LINES = 28;
+    const LINES = mobileLite ? 20 : 28;
 
     function resize() {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, mobileLite ? 1.5 : 2);
       w = canvas.width = Math.floor(innerWidth * dpr);
       h = canvas.height = Math.floor(innerHeight * dpr);
       canvas.style.width = innerWidth + "px";
@@ -87,6 +82,13 @@
       const heroH = Math.max(innerHeight * 0.85, 1);
       const p = Math.min(window.scrollY / heroH, 1);
       scrollFade = 1 - p * 0.55;
+    }
+
+    function isHeroInView() {
+      const heroEl = document.getElementById("hero");
+      if (!heroEl) return window.scrollY < innerHeight;
+      const r = heroEl.getBoundingClientRect();
+      return r.bottom > 40 && r.top < innerHeight;
     }
 
     const rand = function (x, y) {
@@ -109,7 +111,8 @@
     }
 
     function seedParticles() {
-      const count = 48;
+      // Full hero particles restored; mobile slightly lighter for battery
+      const count = reducedMotion ? 0 : mobileLite ? 22 : 48;
       particles = [];
       for (let i = 0; i < count; i++) {
         particles.push({
@@ -124,9 +127,9 @@
       }
     }
 
-    function draw() {
+    function drawFrame(animate) {
       ctx.clearRect(0, 0, w, h);
-      const step = 24 * dpr;
+      const step = (mobileLite ? 28 : 24) * dpr;
       const amp = 70 * dpr;
       const baseAlpha = 0.2 * scrollFade;
 
@@ -153,12 +156,14 @@
       const pAlpha = scrollFade;
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = w;
-        if (p.x > w) p.x = 0;
-        if (p.y < 0) p.y = h;
-        if (p.y > h) p.y = 0;
+        if (animate && !reducedMotion) {
+          p.x += p.vx;
+          p.y += p.vy;
+          if (p.x < 0) p.x = w;
+          if (p.x > w) p.x = 0;
+          if (p.y < 0) p.y = h;
+          if (p.y > h) p.y = 0;
+        }
         ctx.beginPath();
         ctx.fillStyle =
           "hsla(" + p.hue + ", 90%, 70%, " + p.a * pAlpha * 0.85 + ")";
@@ -166,45 +171,64 @@
         ctx.fill();
       }
 
-      t += 0.0018;
-      raf = requestAnimationFrame(draw);
+      if (animate && !reducedMotion) {
+        t += 0.0018;
+      }
+    }
+
+    function loop() {
+      // Mobile: only animate while hero is on-screen (hero effects restored;
+      // pause heavy canvas when scrolling sections below)
+      if (mobileLite && !isHeroInView()) {
+        running = false;
+        raf = 0;
+        drawFrame(false);
+        return;
+      }
+      drawFrame(true);
+      raf = requestAnimationFrame(loop);
     }
 
     function start() {
       if (raf) cancelAnimationFrame(raf);
       updateScrollFade();
-      raf = requestAnimationFrame(draw);
+      if (reducedMotion) {
+        t = 0;
+        drawFrame(false);
+        running = false;
+        return;
+      }
+      running = true;
+      raf = requestAnimationFrame(loop);
+    }
+
+    function onScroll() {
+      if (scrollPending) return;
+      scrollPending = true;
+      requestAnimationFrame(function () {
+        updateScrollFade();
+        scrollPending = false;
+        // Resume canvas when returning to hero on mobile
+        if (mobileLite && !running && !reducedMotion && isHeroInView()) {
+          start();
+        }
+      });
     }
 
     resize();
     start();
     addEventListener("resize", function () {
-      if (isMobileViewport()) {
-        if (raf) cancelAnimationFrame(raf);
-        raf = 0;
-        if (canvas && canvas.parentNode) canvas.remove();
-        return;
-      }
       resize();
+      if (!running && !reducedMotion) start();
+      else if (reducedMotion) drawFrame(false);
     });
-    // Scroll fade only — throttled; never redraw from scroll handler
-    addEventListener(
-      "scroll",
-      function () {
-        if (scrollPending) return;
-        scrollPending = true;
-        requestAnimationFrame(function () {
-          updateScrollFade();
-          scrollPending = false;
-        });
-      },
-      { passive: true }
-    );
+    addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("visibilitychange", function () {
       if (document.hidden) {
         if (raf) cancelAnimationFrame(raf);
         raf = 0;
-      } else if (!isMobileViewport()) {
+        running = false;
+      } else if (!reducedMotion) {
         start();
       }
     });

@@ -2566,41 +2566,34 @@ button {
     transition-delay: 0ms !important;
   }
 
-  /* --- Scroll performance: cut expensive paint/compositing --- */
+  /*
+   * Scroll performance BELOW the hero only.
+   * Hero (.hero) effects stay fully restored: photo border, pulse CTAs,
+   * float logos in hero, glass/stat-card blur, ambient mesh, flow canvas.
+   */
 
-  /* No continuous canvas / mesh on mobile (JS also skips them) */
-  #flow-bg,
-  .ambient-mesh {
-    display: none !important;
-  }
-
-  /* Grain: drop blend mode + lower opacity (mix-blend is costly while scrolling) */
-  .grain {
-    opacity: 0.03;
-    mix-blend-mode: normal;
-  }
-
-  /* Glass: drop backdrop-filter (major mobile jank source) */
-  .glass,
-  .stat-card,
-  .contact__card {
+  /* Glass / cards only outside the hero */
+  .section .glass,
+  .section .contact__card {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background: rgba(18, 10, 31, 0.92);
   }
 
-  /* Soften large multi-layer shadows */
-  .glass,
-  .service-card,
-  .portfolio-card,
-  .stat-card,
-  .countup-card,
-  .cert-card,
-  .timeline__content {
+  .section .glass,
+  .section .service-card,
+  .section .portfolio-card,
+  .section .countup-card,
+  .section .cert-card,
+  .section .timeline__content,
+  .section .platform-card,
+  .section .detail__highlights,
+  .section .feature-panel,
+  .section .cap-pill {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
   }
 
-  /* Section accent glows: kill heavy blur filters */
+  /* Section accent glows (never on #hero) */
   #tiktok-shop::before,
   #youtube-automation::before,
   #tiktok-automation::before,
@@ -2614,7 +2607,7 @@ button {
     opacity: 0.35;
   }
 
-  /* Nav: solid-ish bar, no backdrop blur */
+  /* Nav chrome (not hero content) */
   .nav.is-scrolled {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
@@ -2628,43 +2621,26 @@ button {
     background: rgba(7, 4, 14, 0.98);
   }
 
-  /* Pause float logo continuous animation (static look, big GPU win) */
-  .float-logo {
+  /* Pause float logos only in sections below hero — hero logos keep animation */
+  .section .float-logo {
     animation: none !important;
     will-change: auto !important;
     filter: none !important;
   }
 
-  /* Pulse / spinning photo border — pause on mobile */
-  .btn--pulse {
+  /* Pulse only reduced outside hero (contact CTA, etc.) */
+  .section .btn--pulse {
     animation: none !important;
   }
 
-  .photo-card__border {
-    animation: none !important;
-  }
-
-  .photo-card {
-    transform: none !important;
-    will-change: auto !important;
-  }
-
-  /* Cert modal blur not needed until open; still lighten */
   .cert-modal__backdrop {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background: rgba(6, 3, 12, 0.9);
   }
 
-  /* Prefer compositor-friendly scrolling */
   body {
     -webkit-overflow-scrolling: touch;
-  }
-
-  main,
-  .section,
-  .hero {
-    transform: translateZ(0);
   }
 }
 
@@ -2672,10 +2648,6 @@ button {
   .ambient-mesh__blob {
     filter: blur(70px);
     opacity: 0.4;
-  }
-
-  .photo-card {
-    transform: none !important;
   }
 }
 
