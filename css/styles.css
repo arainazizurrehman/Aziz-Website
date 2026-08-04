@@ -2565,6 +2565,107 @@ button {
   .reveal--delay {
     transition-delay: 0ms !important;
   }
+
+  /* --- Scroll performance: cut expensive paint/compositing --- */
+
+  /* No continuous canvas / mesh on mobile (JS also skips them) */
+  #flow-bg,
+  .ambient-mesh {
+    display: none !important;
+  }
+
+  /* Grain: drop blend mode + lower opacity (mix-blend is costly while scrolling) */
+  .grain {
+    opacity: 0.03;
+    mix-blend-mode: normal;
+  }
+
+  /* Glass: drop backdrop-filter (major mobile jank source) */
+  .glass,
+  .stat-card,
+  .contact__card {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(18, 10, 31, 0.92);
+  }
+
+  /* Soften large multi-layer shadows */
+  .glass,
+  .service-card,
+  .portfolio-card,
+  .stat-card,
+  .countup-card,
+  .cert-card,
+  .timeline__content {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
+  }
+
+  /* Section accent glows: kill heavy blur filters */
+  #tiktok-shop::before,
+  #youtube-automation::before,
+  #tiktok-automation::before,
+  #ai-video::before,
+  #services::before,
+  #about::before,
+  #certifications::before,
+  #contact::before,
+  #portfolio::before {
+    filter: none !important;
+    opacity: 0.35;
+  }
+
+  /* Nav: solid-ish bar, no backdrop blur */
+  .nav.is-scrolled {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(10, 6, 18, 0.96) !important;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+  }
+
+  .nav__mobile {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(7, 4, 14, 0.98);
+  }
+
+  /* Pause float logo continuous animation (static look, big GPU win) */
+  .float-logo {
+    animation: none !important;
+    will-change: auto !important;
+    filter: none !important;
+  }
+
+  /* Pulse / spinning photo border — pause on mobile */
+  .btn--pulse {
+    animation: none !important;
+  }
+
+  .photo-card__border {
+    animation: none !important;
+  }
+
+  .photo-card {
+    transform: none !important;
+    will-change: auto !important;
+  }
+
+  /* Cert modal blur not needed until open; still lighten */
+  .cert-modal__backdrop {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(6, 3, 12, 0.9);
+  }
+
+  /* Prefer compositor-friendly scrolling */
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  main,
+  .section,
+  .hero {
+    transform: translateZ(0);
+  }
 }
 
 @media (max-width: 768px) {

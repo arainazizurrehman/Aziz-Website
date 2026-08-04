@@ -12,11 +12,14 @@
   const isTouch =
     matchMedia("(hover: none) and (pointer: coarse)").matches ||
     "ontouchstart" in window;
-  const isMobile = () => window.innerWidth < 768;
+  const isMobileViewport = () =>
+    window.innerWidth <= 1024 || isTouch;
 
   /* ---------- Ambient morphing gradient mesh (CSS blobs) ---------- */
   (function injectAmbientMesh() {
     if (document.querySelector(".ambient-mesh")) return;
+    // Mobile: skip animated mesh — too expensive while scrolling
+    if (isMobileViewport()) return;
     const mesh = document.createElement("div");
     mesh.className = "ambient-mesh";
     mesh.setAttribute("aria-hidden", "true");
@@ -39,6 +42,13 @@
       el.remove();
     });
 
+    // Mobile: no continuous canvas — major scroll/jank fix
+    if (isMobileViewport() || reducedMotion) {
+      const existing = document.getElementById("flow-bg");
+      if (existing) existing.remove();
+      return;
+    }
+
     let canvas = document.getElementById("flow-bg");
     if (!canvas) {
       canvas = document.createElement("canvas");
@@ -46,7 +56,7 @@
       canvas.setAttribute("aria-hidden", "true");
       const mesh = document.querySelector(".ambient-mesh");
       if (mesh && mesh.parentNode) {
-        mesh.after(canvas); // paint wave lines above soft mesh
+        mesh.after(canvas);
       } else {
         document.body.prepend(canvas);
       }
@@ -60,8 +70,9 @@
     let t = 0;
     let raf = 0;
     let particles = [];
+    let scrollPending = false;
 
-    const LINES = isMobile() ? 20 : 28;
+    const LINES = 28;
 
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -98,8 +109,7 @@
     }
 
     function seedParticles() {
-      // Hero denser; page keeps a light field. Mobile: sparse.
-      const count = reducedMotion ? 0 : isMobile() || isTouch ? 18 : 48;
+      const count = 48;
       particles = [];
       for (let i = 0; i < count; i++) {
         particles.push({
@@ -120,7 +130,6 @@
       const amp = 70 * dpr;
       const baseAlpha = 0.2 * scrollFade;
 
-      // Wave lines
       for (let i = 0; i < LINES; i++) {
         const py = (i / LINES) * h;
         const hue = 265 + (i / LINES) * 100;
@@ -141,18 +150,15 @@
         ctx.stroke();
       }
 
-      // Ambient particles (dim after hero via scrollFade)
       const pAlpha = scrollFade;
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        if (!reducedMotion) {
-          p.x += p.vx;
-          p.y += p.vy;
-          if (p.x < 0) p.x = w;
-          if (p.x > w) p.x = 0;
-          if (p.y < 0) p.y = h;
-          if (p.y > h) p.y = 0;
-        }
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = w;
+        if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h;
+        if (p.y > h) p.y = 0;
         ctx.beginPath();
         ctx.fillStyle =
           "hsla(" + p.hue + ", 90%, 70%, " + p.a * pAlpha * 0.85 + ")";
@@ -160,34 +166,37 @@
         ctx.fill();
       }
 
-      if (!reducedMotion) {
-        t += 0.0018;
-        raf = requestAnimationFrame(draw);
-      }
+      t += 0.0018;
+      raf = requestAnimationFrame(draw);
     }
 
     function start() {
       if (raf) cancelAnimationFrame(raf);
       updateScrollFade();
-      if (reducedMotion) {
-        t = 0;
-        draw();
-      } else {
-        raf = requestAnimationFrame(draw);
-      }
+      raf = requestAnimationFrame(draw);
     }
 
     resize();
     start();
     addEventListener("resize", function () {
+      if (isMobileViewport()) {
+        if (raf) cancelAnimationFrame(raf);
+        raf = 0;
+        if (canvas && canvas.parentNode) canvas.remove();
+        return;
+      }
       resize();
-      if (reducedMotion) draw();
     });
+    // Scroll fade only — throttled; never redraw from scroll handler
     addEventListener(
       "scroll",
       function () {
-        updateScrollFade();
-        if (reducedMotion) draw();
+        if (scrollPending) return;
+        scrollPending = true;
+        requestAnimationFrame(function () {
+          updateScrollFade();
+          scrollPending = false;
+        });
       },
       { passive: true }
     );
@@ -195,7 +204,7 @@
       if (document.hidden) {
         if (raf) cancelAnimationFrame(raf);
         raf = 0;
-      } else if (!reducedMotion) {
+      } else if (!isMobileViewport()) {
         start();
       }
     });
@@ -211,12 +220,25 @@
     yearEl.textContent = String(new Date().getFullYear());
   }
 
+  // Throttle nav scroll class toggles (avoid work every scroll frame)
+  let navScrollPending = false;
   function updateNavScroll() {
     if (!nav) return;
     nav.classList.toggle("is-scrolled", window.scrollY > 24);
   }
   updateNavScroll();
-  window.addEventListener("scroll", updateNavScroll, { passive: true });
+  window.addEventListener(
+    "scroll",
+    function () {
+      if (navScrollPending) return;
+      navScrollPending = true;
+      requestAnimationFrame(function () {
+        updateNavScroll();
+        navScrollPending = false;
+      });
+    },
+    { passive: true }
+  );
 
   function setMenuOpen(open) {
     if (!nav || !navToggle || !navMobile) return;
