@@ -2557,7 +2557,7 @@ button {
   .reveal[data-stagger] {
     opacity: 0.08;
     transform: none !important;
-    transition: opacity 0.6s ease-out !important;
+    transition: opacity 0.4s ease-out !important;
     transition-delay: 0ms !important;
   }
 
