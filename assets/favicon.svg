@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="A">
+  <defs>
+    <linearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6d28d9"/>
+      <stop offset="38%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#ff7a59"/>
+    </linearGradient>
+  </defs>
+  <!-- Matches navbar .nav__logo-mark: rounded square + gradient + white A -->
+  <rect width="32" height="32" rx="9" fill="url(#a)"/>
+  <path fill="#ffffff" d="M16 7.2L23.8 25h-3.35l-1.55-4.15h-5.8L11.55 25H8.2L16 7.2zm-2.55 10.95h5.1L16 12.1l-2.55 6.05z"/>
+</svg>
