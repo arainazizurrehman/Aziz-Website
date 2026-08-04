@@ -2557,7 +2557,7 @@ button {
  * Mobile + tablet (≤1024px) ONLY:
  * - Everything stays visible (waves, logos, design, content)
  * - ALL continuous motion removed (including hero): logos, waves, mesh, pulse, etc.
- * - Content: fade-in only (opacity 0.08 → 1, 0.6s), no L/R or slide transforms
+ * - Content: fade-in only (opacity 0.08 → 1, 0.4s), no L/R or slide transforms
  * Desktop (≥1025px): original full motion unchanged
  */
 @media (max-width: 1024px) {
@@ -2570,7 +2570,7 @@ button {
   .reveal--delay {
     opacity: 0.08;
     transform: none !important;
-    transition: opacity 0.6s ease !important;
+    transition: opacity 0.4s ease !important;
     transition-delay: 0ms !important;
   }
 
@@ -2579,7 +2579,7 @@ button {
     transform: none !important;
   }
 
-  /* Kill stagger delays so every element fades cleanly at 0.6s */
+  /* Kill stagger delays so every element fades cleanly at 0.4s */
   .reveal[data-stagger="0"],
   .reveal[data-stagger="1"],
   .reveal[data-stagger="2"],
