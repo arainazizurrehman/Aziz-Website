@@ -2555,9 +2555,9 @@ button {
   .reveal--right,
   .reveal:not(.reveal--left):not(.reveal--right),
   .reveal[data-stagger] {
-    opacity: 0.08;
+    opacity: 0.4;
     transform: none !important;
-    transition: opacity 0.4s ease-out !important;
+    transition: opacity 0.25s ease-out !important;
     transition-delay: 0ms !important;
   }
 
