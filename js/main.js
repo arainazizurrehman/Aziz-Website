@@ -12,8 +12,10 @@
   const isTouch =
     matchMedia("(hover: none) and (pointer: coarse)").matches ||
     "ontouchstart" in window;
-  const isMobileViewport = () =>
-    window.innerWidth <= 1024 || isTouch;
+  // Width-based split: desktop ≥1025px keeps full original motion;
+  // mobile/tablet ≤1024px simplify below-hero only.
+  const isNarrowViewport = () => window.innerWidth <= 1024;
+  const isMobileViewport = () => isNarrowViewport() || isTouch;
 
   /* ---------- Ambient morphing gradient mesh (CSS blobs) ---------- */
   (function injectAmbientMesh() {
@@ -41,7 +43,7 @@
     });
 
     // reduced-motion: static frame only (still shows hero atmosphere)
-    const mobileLite = isMobileViewport();
+    let mobileLite = isNarrowViewport();
 
     let canvas = document.getElementById("flow-bg");
     if (!canvas) {
@@ -66,10 +68,11 @@
     let particles = [];
     let scrollPending = false;
     let running = false;
-
-    const LINES = mobileLite ? 20 : 28;
+    let LINES = mobileLite ? 20 : 28;
 
     function resize() {
+      mobileLite = isNarrowViewport();
+      LINES = mobileLite ? 20 : 28;
       dpr = Math.min(window.devicePixelRatio || 1, mobileLite ? 1.5 : 2);
       w = canvas.width = Math.floor(innerWidth * dpr);
       h = canvas.height = Math.floor(innerHeight * dpr);
@@ -78,17 +81,26 @@
       seedParticles();
     }
 
-    function updateScrollFade() {
-      const heroH = Math.max(innerHeight * 0.85, 1);
-      const p = Math.min(window.scrollY / heroH, 1);
-      scrollFade = 1 - p * 0.55;
-    }
-
     function isHeroInView() {
       const heroEl = document.getElementById("hero");
       if (!heroEl) return window.scrollY < innerHeight;
       const r = heroEl.getBoundingClientRect();
       return r.bottom > 40 && r.top < innerHeight;
+    }
+
+    function updateScrollFade() {
+      // Soft fade on all viewports — waves stay visible across the full page
+      const heroH = Math.max(innerHeight * 0.85, 1);
+      const p = Math.min(window.scrollY / heroH, 1);
+      scrollFade = 1 - p * 0.55;
+    }
+
+    function updateBelowHeroClass() {
+      // Kept for any legacy CSS; no longer used to hide mobile backgrounds
+      document.body.classList.toggle(
+        "is-below-hero",
+        isNarrowViewport() && !isHeroInView()
+      );
     }
 
     const rand = function (x, y) {
@@ -111,7 +123,7 @@
     }
 
     function seedParticles() {
-      // Full hero particles restored; mobile slightly lighter for battery
+      // Full particles on desktop; slightly lighter on mobile for battery
       const count = reducedMotion ? 0 : mobileLite ? 22 : 48;
       particles = [];
       for (let i = 0; i < count; i++) {
@@ -177,9 +189,8 @@
     }
 
     function loop() {
-      // Mobile: only animate while hero is on-screen (hero effects restored;
-      // pause heavy canvas when scrolling sections below)
-      if (mobileLite && !isHeroInView()) {
+      // Desktop only: animate waves continuously
+      if (isNarrowViewport()) {
         running = false;
         raf = 0;
         drawFrame(false);
@@ -192,7 +203,9 @@
     function start() {
       if (raf) cancelAnimationFrame(raf);
       updateScrollFade();
-      if (reducedMotion) {
+      updateBelowHeroClass();
+      // Mobile/tablet + reduced-motion: static wave frame (visible, no motion)
+      if (reducedMotion || isNarrowViewport()) {
         t = 0;
         drawFrame(false);
         running = false;
@@ -207,9 +220,12 @@
       scrollPending = true;
       requestAnimationFrame(function () {
         updateScrollFade();
+        updateBelowHeroClass();
         scrollPending = false;
-        // Resume canvas when returning to hero on mobile
-        if (mobileLite && !running && !reducedMotion && isHeroInView()) {
+        if (isNarrowViewport() || reducedMotion) {
+          // Redraw static waves with updated soft fade
+          drawFrame(false);
+        } else if (!running && !reducedMotion) {
           start();
         }
       });
@@ -219,8 +235,10 @@
     start();
     addEventListener("resize", function () {
       resize();
-      if (!running && !reducedMotion) start();
-      else if (reducedMotion) drawFrame(false);
+      updateScrollFade();
+      updateBelowHeroClass();
+      if (!running && !reducedMotion && !isNarrowViewport()) start();
+      else drawFrame(false);
     });
     addEventListener("scroll", onScroll, { passive: true });
     document.addEventListener("visibilitychange", function () {
@@ -228,8 +246,10 @@
         if (raf) cancelAnimationFrame(raf);
         raf = 0;
         running = false;
-      } else if (!reducedMotion) {
+      } else if (!reducedMotion && !isNarrowViewport()) {
         start();
+      } else {
+        drawFrame(false);
       }
     });
   })();
@@ -369,10 +389,10 @@
     });
   })();
 
-  /* ---------- Scroll reveal — once only + stagger ---------- */
+  /* ---------- Scroll reveal — L/R + stagger (desktop full; mobile CSS kills section) ---------- */
   const revealEls = document.querySelectorAll(".reveal");
 
-  // Direction + stagger within grids
+  // Direction + stagger within sections (original desktop behavior)
   document.querySelectorAll("section").forEach(function (section, sectionIndex) {
     const items = section.querySelectorAll(".reveal");
     items.forEach(function (el, itemIndex) {
@@ -411,10 +431,10 @@
       el.classList.add("is-visible");
     });
   } else if ("IntersectionObserver" in window && revealEls.length) {
-    // Mobile/tablet: trigger earlier so fade is clearly felt while scrolling
-    const mobileReveal = window.matchMedia("(max-width: 1024px)").matches;
+    const mobileReveal = isNarrowViewport();
+    // Mobile: content fade-in; desktop: L/R slide + fade
     const revealOpts = mobileReveal
-      ? { threshold: 0.01, rootMargin: "120px 0px 60px 0px" }
+      ? { threshold: 0.08, rootMargin: "0px 0px -8% 0px" }
       : { threshold: 0.12, rootMargin: "0px 0px -40px 0px" };
 
     const revealObs = new IntersectionObserver(

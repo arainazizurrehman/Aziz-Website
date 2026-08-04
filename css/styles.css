@@ -506,8 +506,13 @@ button {
   overflow: hidden;
 }
 
+/* Section logos must stay absolute so they cover the full section height */
 .float-logos--section {
+  position: absolute;
+  inset: 0;
   z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .float-logo {
@@ -564,74 +569,75 @@ button {
   animation-delay: 0.15s;
 }
 
+/* Section positions — more corner spacing so logos stay uncrowded */
 .float-logo--e {
-  top: 12%;
-  right: 8%;
-  width: 150px;
+  top: 10%;
+  right: 3%;
+  width: 140px;
   animation: float-y 3.45s ease-in-out infinite;
   animation-delay: 0.55s;
 }
 
 .float-logo--f {
-  bottom: 10%;
-  left: 6%;
-  width: 160px;
+  bottom: 8%;
+  left: 3%;
+  width: 145px;
   animation: float-y 3.8s ease-in-out infinite;
   animation-delay: 0.9s;
 }
 
 .float-logo--g {
-  top: 18%;
-  right: 5%;
-  width: 155px;
+  top: 12%;
+  right: 4%;
+  width: 140px;
   animation: float-y 3.3s ease-in-out infinite;
   animation-delay: 0.12s;
 }
 
 .float-logo--h {
-  bottom: 15%;
+  bottom: 10%;
   left: 4%;
-  width: 170px;
+  width: 150px;
   animation: float-y 3.65s ease-in-out infinite;
   animation-delay: 0.6s;
 }
 
 .float-logo--i {
-  top: 30%;
+  top: 22%;
   left: 3%;
-  width: 160px;
+  width: 145px;
   animation: float-y 3.55s ease-in-out infinite;
   animation-delay: 0.28s;
 }
 
 .float-logo--j {
-  top: 20%;
-  right: 4%;
-  width: 145px;
+  top: 14%;
+  right: 3%;
+  width: 135px;
   animation: float-y 3.35s ease-in-out infinite;
   animation-delay: 0.8s;
 }
 
 .float-logo--k {
-  bottom: 12%;
-  left: 8%;
-  width: 155px;
+  bottom: 10%;
+  left: 4%;
+  width: 140px;
   animation: float-y 3.7s ease-in-out infinite;
   animation-delay: 0.42s;
 }
 
 .float-logo--l {
-  top: 15%;
-  left: 5%;
-  width: 150px;
+  top: 12%;
+  left: 3%;
+  width: 140px;
   animation: float-y 3.6s ease-in-out infinite;
   animation-delay: 0.08s;
 }
 
 .float-logo--m {
-  bottom: 18%;
-  right: 6%;
-  width: 165px;
+  bottom: 12%;
+  right: 4%;
+  width: 145px;
   animation: float-y 3.25s ease-in-out infinite;
   animation-delay: 0.68s;
 }
@@ -1188,11 +1194,10 @@ button {
   background: radial-gradient(circle, rgba(251, 146, 60, 0.2) 0%, transparent 68%);
 }
 
-/* Keep section content above local glow */
-.section > .container,
-.section > .float-logos {
+/* Keep section content above logos + local glow (do NOT make .float-logos relative — that collapses them) */
+.section > .container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .detail__layout {
@@ -2069,7 +2074,7 @@ button {
   letter-spacing: 0.04em;
 }
 
-/* ---------- Scroll reveal (alternating L/R + fade) ---------- */
+/* ---------- Scroll reveal (alternating L/R + fade) — full on desktop ---------- */
 .reveal {
   opacity: 0;
   transition:
@@ -2548,31 +2553,77 @@ button {
 .reveal[data-stagger="6"] { transition-delay: 420ms; }
 .reveal[data-stagger="7"] { transition-delay: 490ms; }
 
-/* Mobile + tablet (≤1024px): no scroll reveals — content always fully visible */
+/*
+ * Mobile + tablet (≤1024px) ONLY:
+ * - Background (waves + logos) stays visible full page, but fully static
+ * - Content: smooth fade-in only (opacity 0.08 → 1, 0.6s), no L/R slide
+ * - Hero design unchanged
+ * Desktop (≥1025px) uses base rules — floating logos + full motion
+ */
 @media (max-width: 1024px) {
-  .reveal,
-  .reveal--left,
-  .reveal--right,
-  .reveal:not(.reveal--left):not(.reveal--right),
-  .reveal[data-stagger],
-  .reveal.is-visible {
+  /* Content fade-in only (sections below hero — not .hero) */
+  .section .reveal,
+  .section .reveal--left,
+  .section .reveal--right,
+  .section .reveal:not(.reveal--left):not(.reveal--right),
+  .section .reveal[data-stagger],
+  .section .reveal--delay {
+    opacity: 0.08;
+    transform: none !important;
+    transition: opacity 0.6s ease !important;
+    transition-delay: 0ms !important;
+  }
+
+  .section .reveal.is-visible {
     opacity: 1 !important;
     transform: none !important;
-    transition: none !important;
-    transition-delay: 0ms !important;
   }
 
-  .reveal--delay {
-    transition-delay: 0ms !important;
+  /* Below hero: no local accent glows / bg orbs */
+  #tiktok-shop::before,
+  #youtube-automation::before,
+  #tiktok-automation::before,
+  #ai-video::before,
+  #services::before,
+  #about::before,
+  #certifications::before,
+  #contact::before,
+  #portfolio::before {
+    content: none !important;
+    display: none !important;
   }
 
-  /*
-   * Scroll performance BELOW the hero only.
-   * Hero (.hero) effects stay fully restored: photo border, pulse CTAs,
-   * float logos in hero, glass/stat-card blur, ambient mesh, flow canvas.
-   */
+  /* Logos static on mobile/tablet (still visible) */
+  .float-logo {
+    animation: none !important;
+    will-change: auto !important;
+  }
 
-  /* Glass / cards only outside the hero */
+  /* Ambient mesh blobs static (no morphing motion) */
+  .ambient-mesh__blob {
+    animation: none !important;
+  }
+
+  /* Ensure section logo layers remain painted */
+  .section > .float-logos,
+  .float-logos--section {
+    display: block !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: none !important;
+  }
+
+  /* Keep page-wide waves + mesh visible full height (do not hide below hero) */
+  .ambient-mesh,
+  #flow-bg {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Scroll performance BELOW the hero only */
   .section .glass,
   .section .contact__card {
     backdrop-filter: none !important;
@@ -2593,20 +2644,6 @@ button {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
   }
 
-  /* Section accent glows (never on #hero) */
-  #tiktok-shop::before,
-  #youtube-automation::before,
-  #tiktok-automation::before,
-  #ai-video::before,
-  #services::before,
-  #about::before,
-  #certifications::before,
-  #contact::before,
-  #portfolio::before {
-    filter: none !important;
-    opacity: 0.35;
-  }
-
   /* Nav chrome (not hero content) */
   .nav.is-scrolled {
     backdrop-filter: none !important;
@@ -2621,14 +2658,7 @@ button {
     background: rgba(7, 4, 14, 0.98);
   }
 
-  /* Pause float logos only in sections below hero — hero logos keep animation */
-  .section .float-logo {
-    animation: none !important;
-    will-change: auto !important;
-    filter: none !important;
-  }
-
-  /* Pulse only reduced outside hero (contact CTA, etc.) */
+  /* Pause non-hero pulse CTAs for perf */
   .section .btn--pulse {
     animation: none !important;
   }
