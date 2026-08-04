@@ -365,6 +365,12 @@
       el.classList.add("is-visible");
     });
   } else if ("IntersectionObserver" in window && revealEls.length) {
+    // Mobile: trigger earlier so content isn't blank while scrolling
+    const mobileReveal = window.matchMedia("(max-width: 768px)").matches;
+    const revealOpts = mobileReveal
+      ? { threshold: 0.01, rootMargin: "100px 0px 80px 0px" }
+      : { threshold: 0.12, rootMargin: "0px 0px -40px 0px" };
+
     const revealObs = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
@@ -372,7 +378,7 @@
           entry.target.classList.toggle("is-visible", entry.isIntersecting);
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      revealOpts
     );
     revealEls.forEach(function (el) {
       revealObs.observe(el);
