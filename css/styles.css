@@ -2555,75 +2555,98 @@ button {
 
 /*
  * Mobile + tablet (≤1024px) ONLY:
- * - Background (waves + logos) stays visible full page, but fully static
- * - Content: smooth fade-in only (opacity 0.08 → 1, 0.6s), no L/R slide
- * - Hero design unchanged
- * Desktop (≥1025px) uses base rules — floating logos + full motion
+ * - Everything stays visible (waves, logos, design, content)
+ * - ALL continuous motion removed (including hero): logos, waves, mesh, pulse, etc.
+ * - Content: fade-in only (opacity 0.08 → 1, 0.6s), no L/R or slide transforms
+ * Desktop (≥1025px): original full motion unchanged
  */
 @media (max-width: 1024px) {
-  /* Content fade-in only (sections below hero — not .hero) */
-  .section .reveal,
-  .section .reveal--left,
-  .section .reveal--right,
-  .section .reveal:not(.reveal--left):not(.reveal--right),
-  .section .reveal[data-stagger],
-  .section .reveal--delay {
+  /* ---- Content fade-in only (entire page, including hero) ---- */
+  .reveal,
+  .reveal--left,
+  .reveal--right,
+  .reveal:not(.reveal--left):not(.reveal--right),
+  .reveal[data-stagger],
+  .reveal--delay {
     opacity: 0.08;
     transform: none !important;
     transition: opacity 0.6s ease !important;
     transition-delay: 0ms !important;
   }
 
-  .section .reveal.is-visible {
+  .reveal.is-visible {
     opacity: 1 !important;
     transform: none !important;
   }
 
-  /* Below hero: no local accent glows / bg orbs */
-  #tiktok-shop::before,
-  #youtube-automation::before,
-  #tiktok-automation::before,
-  #ai-video::before,
-  #services::before,
-  #about::before,
-  #certifications::before,
-  #contact::before,
-  #portfolio::before {
-    content: none !important;
-    display: none !important;
+  /* Kill stagger delays so every element fades cleanly at 0.6s */
+  .reveal[data-stagger="0"],
+  .reveal[data-stagger="1"],
+  .reveal[data-stagger="2"],
+  .reveal[data-stagger="3"],
+  .reveal[data-stagger="4"],
+  .reveal[data-stagger="5"],
+  .reveal[data-stagger="6"],
+  .reveal[data-stagger="7"] {
+    transition-delay: 0ms !important;
   }
 
-  /* Logos static on mobile/tablet (still visible) */
-  .float-logo {
+  /* ---- Freeze ALL continuous animations (hero included) ---- */
+  .float-logo,
+  .btn--pulse,
+  .photo-card__border,
+  .scroll-cue__line,
+  .scroll-cue__chevron,
+  .float-wa,
+  .float-wa__ring,
+  .ambient-mesh__blob {
     animation: none !important;
     will-change: auto !important;
   }
 
-  /* Ambient mesh blobs static (no morphing motion) */
-  .ambient-mesh__blob {
-    animation: none !important;
+  .float-logo {
+    transform: none !important;
   }
 
-  /* Ensure section logo layers remain painted */
+  /* No 3D tilt / magnetic motion leftovers */
+  .photo-card,
+  .photo-card.is-tilting {
+    transform: none !important;
+    transition: none !important;
+    will-change: auto !important;
+  }
+
+  .btn--primary,
+  .btn--gradient,
+  .btn--outline,
+  .btn--pulse {
+    will-change: auto !important;
+  }
+
+  /* ---- Background remains fully visible & static ---- */
   .section > .float-logos,
-  .float-logos--section {
+  .float-logos--section,
+  .hero .float-logos {
     display: block !important;
     position: absolute !important;
     inset: 0 !important;
-    z-index: 0 !important;
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: none !important;
   }
 
-  /* Keep page-wide waves + mesh visible full height (do not hide below hero) */
+  .section > .float-logos,
+  .float-logos--section {
+    z-index: 0 !important;
+  }
+
   .ambient-mesh,
   #flow-bg {
     opacity: 1 !important;
     visibility: visible !important;
   }
 
-  /* Scroll performance BELOW the hero only */
+  /* Scroll performance: lighter glass below hero only (design intact) */
   .section .glass,
   .section .contact__card {
     backdrop-filter: none !important;
@@ -2644,7 +2667,6 @@ button {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35) !important;
   }
 
-  /* Nav chrome (not hero content) */
   .nav.is-scrolled {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
@@ -2656,11 +2678,6 @@ button {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background: rgba(7, 4, 14, 0.98);
-  }
-
-  /* Pause non-hero pulse CTAs for perf */
-  .section .btn--pulse {
-    animation: none !important;
   }
 
   .cert-modal__backdrop {

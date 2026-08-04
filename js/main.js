@@ -326,7 +326,8 @@
   /* ---------- 3D tilt on profile photo ---------- */
   (function initPhotoTilt() {
     const card = document.querySelector(".photo-card");
-    if (!card || reducedMotion || isTouch) return;
+    // Desktop only — no motion on mobile/tablet
+    if (!card || reducedMotion || isTouch || isNarrowViewport()) return;
 
     const max = 9;
 
@@ -354,7 +355,8 @@
 
   /* ---------- Magnetic primary CTAs ---------- */
   (function initMagnetic() {
-    if (reducedMotion || isTouch) return;
+    // Desktop only — no motion on mobile/tablet
+    if (reducedMotion || isTouch || isNarrowViewport()) return;
     const magnets = document.querySelectorAll(
       ".btn--primary, .btn--gradient, .btn--outline, a.btn--primary, a.btn--gradient, a.btn--outline"
     );
