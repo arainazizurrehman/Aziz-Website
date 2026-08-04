@@ -2548,36 +2548,22 @@ button {
 .reveal[data-stagger="6"] { transition-delay: 420ms; }
 .reveal[data-stagger="7"] { transition-delay: 490ms; }
 
-/* Mobile + tablet only (≤1024px): clear fade-only — desktop L/R untouched */
+/* Mobile + tablet (≤1024px): no scroll reveals — content always fully visible */
 @media (max-width: 1024px) {
   .reveal,
   .reveal--left,
   .reveal--right,
   .reveal:not(.reveal--left):not(.reveal--right),
-  .reveal[data-stagger] {
-    opacity: 0.4;
+  .reveal[data-stagger],
+  .reveal.is-visible {
+    opacity: 1 !important;
     transform: none !important;
-    transition: opacity 0.25s ease-out !important;
+    transition: none !important;
     transition-delay: 0ms !important;
   }
 
   .reveal--delay {
     transition-delay: 0ms !important;
-  }
-
-  .reveal[data-stagger="1"],
-  .reveal[data-stagger="2"],
-  .reveal[data-stagger="3"],
-  .reveal[data-stagger="4"],
-  .reveal[data-stagger="5"],
-  .reveal[data-stagger="6"],
-  .reveal[data-stagger="7"] {
-    transition-delay: 0ms !important;
-  }
-
-  .reveal.is-visible {
-    opacity: 1 !important;
-    transform: none !important;
   }
 }
 
